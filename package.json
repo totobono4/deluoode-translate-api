@@ -1,0 +1,27 @@
+{
+  "name": "deluoode-translate-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "deluoode": "node deluooder.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/totobono4/deluoode-translate-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/totobono4/deluoode-translate-api/issues"
+  },
+  "homepage": "https://github.com/totobono4/deluoode-translate-api#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "puppeteer": "^19.7.2",
+    "swagger-ui-express": "^4.6.1"
+  }
+}

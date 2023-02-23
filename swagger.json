@@ -1,0 +1,121 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Deluoodle Translate",
+    "description": "A deluoode translator API",
+    "contact": {
+      "email": "theo.bonnaud@outlook.fr"
+    },
+    "version": "1.0"
+  },
+  "externalDocs": {
+    "description": "Deluoodle Translator on Github",
+    "url": "https://github.com/totobono4/deluoode-translate-api"
+  },
+  "tags": [
+    {
+      "name": "translate",
+      "description": "Everything about your Pets"
+    }
+  ],
+  "paths": {
+    "/translate/{languageFrom}/{languageTo}": {
+      "post": {
+        "tags": [
+          "translate"
+        ],
+        "summary": "Translate a sentence",
+        "description": "This is so fun",
+        "operationId": "translate",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "languageFrom",
+            "description": "The language from the sentence to translate",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/language"
+            }
+          },
+          {
+            "in": "path",
+            "name": "languageTo",
+            "description": "The language to translate the sentence to",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/language"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "description": "the sentence to translate",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sentence"
+                ],
+                "properties": {
+                  "sentence": {
+                    "$ref": "#/components/schemas/sentence"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "translation"
+                  ],
+                  "properties": {
+                    "translation": {
+                      "schema": {
+                        "$ref": "#/components/schemas/translation"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "language": {
+        "type": "string",
+        "enum": [
+          "fr",
+          "en"
+        ],
+        "default": "fr"
+      },
+      "sentence": {
+        "type": "string",
+        "description": "The sentence to translate",
+        "example": "Hello World!"
+      },
+      "translation": {
+        "type": "string",
+        "description": "The translated sentence",
+        "example": "Bonjour monde!"
+      }
+    }
+  }
+}
