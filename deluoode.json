@@ -1,0 +1,18 @@
+{
+    "selectors": {
+        "accept": "button[aria-label='Tout accepter']",
+        "refuse": "button[aria-label='Tout refuser']",
+        "sourceLang": "button[aria-label='Plus de langues sources']",
+        "targetLang": "button[aria-label='Plus de langues cibles']",
+        "input": "textarea[aria-label='Texte source']",
+        "output": "div[aria-live='polite']>div>div>span>span"
+    },
+
+    "languages": {
+        "de": "Allemand",
+        "en": "Anglais",
+        "ko": "Coréen",
+        "es": "Espagnol",
+        "fr": "Français"
+    }
+}
