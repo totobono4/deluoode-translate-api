@@ -2,37 +2,49 @@ const puppeteer = require('puppeteer');
 const { selectors, languages } = require('./deluoode.json');
 
 class Deluooder {
-  constructor() {
 
+  constructor() {
     this.browser = null;
     this.page = null;
-
-    (async () => {
-
-      //await page.goto('https://translate.google.fr/');
-
-      // Set screen size
-      //await page.setViewport({width: 1920, height: 1080});
-
-      // Accepter CGU :
-      //await page.click(selectors.accept);
-      //await page.waitForNavigation({waitUntil: 'networkidle0'});
-
-    })();
   }
 
+  async init()  {
+
+    this.browser = await puppeteer.launch({headless: false, slowMo: 50});
+    this.page = await this.browser.newPage();
+    
+    await this.page.goto('https://translate.google.fr/');
+
+    // Set screen size
+    await this.page.setViewport({width: 1080, height: 1024});
+
+    // Accepter CGU :
+    await this.page.click(selectors.accept);
+    await this.page.waitForNavigation({waitUntil: 'networkidle0'});
+
+    await this.setLanguageFrom(languages.fr);
+    await this.setSentence('Coucou cest moi');
+    await this.setLanguageTo(languages['zh-tw']);
+    await this.getTranslation().then((res) => {
+      console.log(res);
+    });
+
+  };
+  
   async setLanguageFrom(language) {
     await this.page.click(selectors.sourceLang);
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await this.page.waitForSelector(selectors.searchLang);
     await this.page.keyboard.type(language);
     await this.page.keyboard.press('Enter');
+    await new Promise(resolve => setTimeout(resolve, 1000));
   }
 
   async setLanguageTo(language) {
     await this.page.click(selectors.targetLang);
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await this.page.waitForSelector(selectors.searchLang);
     await this.page.keyboard.type(language);
     await this.page.keyboard.press('Enter');
+    await new Promise(resolve => setTimeout(resolve, 1000));
   }
 
   async setSentence(text) {
@@ -46,24 +58,15 @@ class Deluooder {
     return value;
   }
 
-  async init() {
-    this.browser = await puppeteer.launch({ headless: false });
-    this.page = await browser.newPage();
-  }
-
   hello_deluoode() {
     console.log("hello deluoode");
   }
 }
 
+
 async function main() {
   const deluooder = new Deluooder();
   await deluooder.init();
-  deluooder.hello_deluoode();
-  deluooder.setLanguageFrom(languages.fr);
-  deluooder.setSentence('Salut je suis un cascadeur professionnel');
-  deluooder.setLanguageTo(languages.en);
-  console.log(deluooder.getTranslation());
 }
 
 if (require.main === module) {
