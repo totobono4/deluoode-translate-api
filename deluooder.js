@@ -22,13 +22,6 @@ class Deluooder {
     await this.page.click(selectors.accept);
     await this.page.waitForNavigation({waitUntil: 'networkidle0'});
 
-    await this.setLanguageFrom(languages.fr);
-    await this.setSentence('Coucou cest moi');
-    await this.setLanguageTo(languages['zh-tw']);
-    await this.getTranslation().then((res) => {
-      console.log(res);
-    });
-
   };
   
   async setLanguageFrom(language) {
