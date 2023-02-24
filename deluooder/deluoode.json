@@ -5,6 +5,7 @@
         "sourceLang": "button[aria-label='Plus de langues sources']",
         "targetLang": "button[aria-label='Plus de langues cibles']",
         "searchLang": "input[aria-label='Rechercher une langue']",
+        "valueLang": "div[data-language-code='en']>div:last-child>span",
         "input": "textarea[aria-label='Texte source']",
         "output": "div[aria-live='polite']>div>div>span>span>span"
     },
