@@ -9,7 +9,7 @@ class Deluooder {
     this.page = null
   }
 
-  async init (headless = true, slowMo = 0) {
+  async init ({ headless = true, slowMo = 0 }) {
     this.browser = await puppeteer.launch({ headless, slowMo })
     this.page = await this.browser.newPage()
 
@@ -55,14 +55,15 @@ class Deluooder {
 
 async function main () {
   const deluooder = new Deluooder()
-  await deluooder.init(false, 50)
+  await deluooder.init({ headless: false, slowMo: 10 })
 
-  await deluooder.setLanguageFrom(languages.en)
-  await deluooder.setLanguageTo(languages.fr)
+  await deluooder.setLanguageFrom('en')
+  await deluooder.setLanguageTo('fr')
   await deluooder.setSentence('Hello Deluoode!')
 
   const translation = await deluooder.getTranslation()
   console.log(translation)
+  await deluooder.close()
 }
 
 if (require.main === module) {

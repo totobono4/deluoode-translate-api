@@ -23,7 +23,7 @@ app.post('/translate/*/*', async (req, res) => {
 
   const deluooder = deluooderFactory.create()
 
-  await deluooder.init(false, 10)
+  await deluooder.init({ slowMo: 10 })
   await deluooder.setLanguageFrom(languageFrom)
   await deluooder.setLanguageTo(languageTo)
   await deluooder.setSentence(sentence)
