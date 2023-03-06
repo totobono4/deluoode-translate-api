@@ -1,5 +1,7 @@
 'use strict'
 
+require('dotenv').config()
+
 const deluooderFactory = require('./deluooder/deluooderFactory')
 
 const express = require('express')

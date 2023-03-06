@@ -1,7 +1,7 @@
 'use strict'
 
 const puppeteer = require('puppeteer')
-const { selectors, languages } = require('../deluooder/deluoode.json')
+const { selectors, languages } = require('./deluoode.json')
 
 class Deluooder {
   constructor () {
