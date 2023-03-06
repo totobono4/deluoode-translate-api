@@ -1,8 +1,7 @@
 'use strict'
 
 require('dotenv').config()
-
-const deluooderFactory = require('./deluooder/deluooderFactory')
+const Deluooder = require('deluoode-translator')
 
 const express = require('express')
 const app = express()
@@ -23,7 +22,7 @@ app.post('/translate/*/*', async (req, res) => {
   const languageTo = req.params[1]
   const sentence = req.body.sentence
 
-  const deluooder = deluooderFactory.create()
+  const deluooder = new Deluooder()
 
   await deluooder.init({ slowMo: 10 })
   await deluooder.setLanguageFrom(languageFrom)
